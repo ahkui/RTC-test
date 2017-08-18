@@ -35,8 +35,6 @@ Route::post('deploy', function()
         ],
         'deployUser' => 'root',
         'branch' => 'master',
-        'directory' => '/var/www/',
-        'pullScriptPath' => __DIR__ . '/scripts/git-pull.sh',
         'remote' => 'origin'
     ));
     $deployer->postDeployCallback = function () {
