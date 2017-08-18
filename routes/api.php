@@ -23,7 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('deploy', function()
 {
-    $cmd = 'whoami;cd /var/www ;git pull';
+    $cmd = 'whoami;cd /var/www ;/usr/bin/git pull 2>&1';
     $exec = exec($cmd, $output, $return);
     return [$exec,$output,$return];
 });
