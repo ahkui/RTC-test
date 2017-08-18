@@ -23,7 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('deploy', function()
 {
-    return __DIR__;
     $deployer = new \Tmd\AutoGitPull\Deployer(array(
         'allowedIpRanges' => [
             '131.103.20.160/27', // Bitbucket
@@ -37,6 +36,7 @@ Route::post('deploy', function()
         'deployUser' => 'root',
         'branch' => 'master',
         'directory' => '/var/www',
+        'pullScriptPath' => '/var/www/vendor/tmd/src/scripts/git-pull.sh',
         'remote' => 'origin'
     ));
     $deployer->postDeployCallback = function () {
