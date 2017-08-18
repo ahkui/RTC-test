@@ -48,7 +48,7 @@ Route::get('deploy', function()
 Route::post('deploy', function()
 {
     ini_set('max_execution_time', 300);
-    $cmd = 'cd /var/www && ssh-add /root/.ssh/id_rsa && /usr/bin/git fetch origin 2>&1 && /usr/bin/git reset --hard origin/master 2>&1 && composer selfupdate && composer update && php artisan --version';
+    $cmd = 'cd /var/www;ssh-add /root/.ssh/id_rsa;/usr/bin/git fetch origin 2>&1;/usr/bin/git reset --hard origin/master 2>&1;composer selfupdate && composer update;php artisan --version';
     exec($cmd, $output, $return);
     if ($return !== 0) {
         return response($output,500);
