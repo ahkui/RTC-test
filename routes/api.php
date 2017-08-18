@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('deploy', function()
 {
     ini_set('max_execution_time', 300);
-    $cmd = 'php -v;php artisan --version';
+    $cmd = 'php -v;cd /var/www;php artisan --version';
     exec($cmd, $output, $return);
     if ($return !== 0) {
         return response($output,500);
@@ -36,7 +36,7 @@ Route::get('deploy', function()
 Route::post('deploy', function()
 {
     ini_set('max_execution_time', 300);
-    $cmd = 'cd /var/www;ssh-add /root/.ssh/id_rsa;/usr/bin/git fetch 2>&1;/usr/bin/git reset --hard HEAD 2>&1;composer update';
+    $cmd = 'cd /var/www;ssh-add /root/.ssh/id_rsa;/usr/bin/git fetch 2>&1;/usr/bin/git reset --hard HEAD 2>&1';
     exec($cmd, $output, $return);
     if ($return !== 0) {
         return response($output,500);
