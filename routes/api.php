@@ -23,6 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('deploy', function()
 {
+    return __DIR__;
     $deployer = new \Tmd\AutoGitPull\Deployer(array(
         'allowedIpRanges' => [
             '131.103.20.160/27', // Bitbucket
