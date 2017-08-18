@@ -35,6 +35,7 @@ Route::post('deploy', function()
         ],
         'deployUser' => 'root',
         'branch' => 'master',
+        'directory' => '/var/www',
         'remote' => 'origin'
     ));
     $deployer->postDeployCallback = function () {
