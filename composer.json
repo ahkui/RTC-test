@@ -39,6 +39,8 @@
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
             "php artisan optimize",
+            "chmod -R 777 bootstrap/cache",
+            "chmod -R 777 storage/",
             "chmod +x vendor/tmd/auto-git-pull/scripts/git-pull.sh"
         ],
         "post-update-cmd": [
