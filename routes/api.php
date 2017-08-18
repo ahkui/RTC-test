@@ -33,8 +33,15 @@ Route::post('deploy', function()
             '192.30.252.0/22', // GitHub
             '192.168.0.0/16', // Local
         ],
-        'directory' => '/var/www/mysite/'
+        'deployUser' => 'root',
+        'branch' => 'master',
+        'directory' => '/var/www/',
+        'pullScriptPath' => __DIR__ . '/scripts/git-pull.sh',
+        'remote' => 'origin'
     ));
+    $deployer->postDeployCallback = function () {
+    echo 'Yay!';
+};
     $deployer->deploy();
 });
 
