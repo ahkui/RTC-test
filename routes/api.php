@@ -28,7 +28,7 @@ Route::post('deploy', function()
     exec($cmd, $output, $return);
     if ($return !== 0) {
         return response($output,500);
-        abort(500,$output);
+        // abort(500,$output);
     }
     return $output;
 });
