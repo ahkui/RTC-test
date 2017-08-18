@@ -26,6 +26,7 @@ Route::post('deploy', function()
     $cmd = 'cd /var/www;ssh-add /root/.ssh/id_rsa;/usr/bin/git fetch 2>&1;/usr/bin/git reset --hard HEAD 2>&1;composer install 2>&1;composer update 2>&1';
     exec($cmd, $output, $return);
     if ($return !== 0) {
+        return response($output,500);
         abort(500,$output);
     }
     // return $output;
