@@ -17,6 +17,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('deploy', function()
+{
+    ini_set('max_execution_time', 300);
+    $cmd = 'php -v;php artisan --version';
+    exec($cmd, $output, $return);
+    if ($return !== 0) {
+        return response($output,500);
+        // abort(500,$output);
+    }
+    return $output;
+});
+
 
 
 
