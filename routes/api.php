@@ -30,6 +30,6 @@ Route::post('deploy', function()
         return response($output,500);
         abort(500,$output);
     }
-    // return $output;
+    return $output;
 });
 
