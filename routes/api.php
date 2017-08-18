@@ -29,6 +29,18 @@ Route::get('deploy', function()
     return $output;
 });
 
+Route::post('composer', function()
+{
+    ini_set('max_execution_time', 300);
+    $cmd = 'cd /var/www;composer selfupdate && composer update';
+    exec($cmd, $output, $return);
+    if ($return !== 0) {
+        return response($output,500);
+        // abort(500,$output);
+    }
+    return $output;
+});
+
 
 
 
