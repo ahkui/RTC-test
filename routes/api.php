@@ -23,7 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('deploy', function()
 {
-    $cmd = 'whoami;cd /var/www ;ssh-add /root/.ssh/id_rsa;/usr/bin/git pull 2>&1';
+    $cmd = 'whoami;cd /var/www ;ssh-keygen -R ahkui.com;/usr/bin/git pull 2>&1';
     $exec = exec($cmd, $output, $return);
     return [$exec,$output,$return];
 });
