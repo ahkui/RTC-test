@@ -44,7 +44,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('deploy', function()
 {
     ini_set('max_execution_time', 300);
-    $cmd = 'cd /var/www;ssh-add /root/.ssh/id_rsa;/usr/bin/git fetch origin 2>&1;/usr/bin/git reset --hard origin/server 2>&1;chmod -R 777 /var/www/storage;composer dump-autoload -o;composer update &;php artisan clear-compiled;php artisan view:clear;php artisan config:clear;php artisan optimize;composer dump-autoload -o;php artisan queue:restart';
+    $cmd = 'cd /var/www;ssh-add /root/.ssh/id_rsa;/usr/bin/git fetch origin 2>&1;/usr/bin/git reset --hard origin/server 2>&1;chmod -R 777 /var/www/storage;composer dump-autoload -o;php artisan clear-compiled;php artisan view:clear;php artisan config:clear;php artisan optimize;composer dump-autoload -o;php artisan queue:restart';
+    exec('composer update &', $output2, $return2);
     exec($cmd, $output, $return);
     if ($return !== 0) return response($output,500);
     return $output;
