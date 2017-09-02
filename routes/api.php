@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('deploy', function()
 {
     ini_set('max_execution_time', 300);
-    $cmd = 'cd /var/www;composer selfupdate && composer update;php artisan --version';
+    $cmd = 'cd /var/www;composer install;php artisan --version';
     exec($cmd, $output, $return);
     if ($return !== 0) {
         return response($output,500);
