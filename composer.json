@@ -12,6 +12,7 @@
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
+        "doctrine/dbal": "*",
         "phpunit/phpunit": "*"
     },
     "autoload": {
